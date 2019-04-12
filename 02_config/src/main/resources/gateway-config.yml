@@ -1,0 +1,30 @@
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 3000
+
+spring:
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          lowerCaseServiceId: true
+          enabled: true
+      routes:
+        #配置管理端的微服务
+        - id: employee-server
+          uri: lb://employee-server
+          predicates:
+            - Path=/employee/**
+          filters:
+            - StripPrefix=1
+        #配置跳转监控的微服务
+        - id: monitor-server
+          uri: lb://monitor-server
+          predicates:
+            - Path=/monitor/**
+          filters:
+            - StripPrefix=1

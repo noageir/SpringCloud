@@ -1,0 +1,37 @@
+server:
+  port: 10010
+#---------------------------------------------------------------------
+spring:
+  application:
+    name: eureka-server
+  profiles:
+    active: dev
+#---------------------------------------------------------------------
+eureka:
+  instance:
+    hostname: localhost
+    leaseRenewalIntervalInSeconds: 10
+    status-page-url-path: /actuator/info #eureka注册中心的url link
+    health-check-url-path: /actuator/health #健康检查的url
+  client:
+    register-with-eureka: true #是否注册到注册中心
+    fetch-registry: false #是否从注册中心拉取注册服务列表
+    registryFetchIntervalSeconds: 5
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+#---------------------------------------------------------------------
+#监控配置
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: ALWAYS
+#---------------------------------------------------------------------
+info:
+  version: 1.0.0
+  app:
+    name: ${spring.application.name}
+#---------------------------------------------------------------------

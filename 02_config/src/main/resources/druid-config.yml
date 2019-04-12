@@ -1,0 +1,12 @@
+# StatViewServlet配置，说明请参考Druid Wiki，配置_StatViewServlet配置
+spring:
+  datasource:
+    druid:
+      stat-view-servlet:
+        enabled: true
+        url-pattern: /druid/*
+        reset-enable: false
+        login-username: admin
+        login-password: admin
+        allow: 127.0.0.1
+        #deny= 192.168.32.139 #访问黑名单

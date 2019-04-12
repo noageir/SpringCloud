@@ -1,0 +1,9 @@
+#数据分分页组件配置
+pagehelper:
+  reasonable: true
+  supportMethodsArguments: true
+
+#MyBatis扫描Mapper配置
+mybatis:
+  mapperlocations: classpath:mapper/*Mapper.xml  #扫描映射文件
+  config-location: classpath:mybatis-config.xml

@@ -1,0 +1,36 @@
+eureka:
+  instance:
+    leaseRenewalIntervalInSeconds: 10
+    status-page-url-path: /actuator/info #eureka注册中心的url link
+    health-check-url-path: /actuator/health #健康检查的url
+    hostname: localhost
+    metadata-map:
+      user.name: ${spring.security.user.name}
+      user.password: ${spring.security.user.password}
+    status-page-url: http://localhost:${server.port}/#/wallboard
+  client:
+    registryFetchIntervalSeconds: 5
+    register-with-eureka: true #是否注册到注册中心
+    fetch-registry: true #是否从注册中心拉取注册服务列表
+    service-url:
+      defaultZone: http://localhost:10010/eureka/ #注册中心地址
+#---------------------------------------------------------------------
+spring:
+  application:
+    name: monitor-server
+  security:
+    user:
+      name: 'admin'
+      password: 'admin'
+  cloud:
+    config:
+      name: monitor-server
+      failFast: true
+      discovery:
+        enabled: true
+        serviceId: config-server
+      retry:
+        initial-interval: 1000
+        multiplier: 1.2
+        max-interval: 2000
+        max-attempts: 6

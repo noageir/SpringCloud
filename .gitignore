@@ -1,0 +1,11 @@
+#例外文件
+*.iml
+*.ipr
+*.iws
+*/src/test/
+
+#系统配置文件
+*/target/
+/.ideaDataSources/
+.idea/
+
