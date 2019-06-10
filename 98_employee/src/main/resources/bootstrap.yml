@@ -4,7 +4,9 @@ eureka:
     status-page-url-path: /actuator/info #eureka注册中心的url link
     health-check-url-path: /actuator/health #健康检查的url
     hostname: localhost
-    status-page-url: http://localhost:${server.port}/swagger-ui.html
+    status-page-url: http://noageir.club:${server.port}/swagger-ui.html
+    instance-id: ${spring.application.name}-${server.port}
+    prefer-ip-address: true
   client:
     registryFetchIntervalSeconds: 5
     register-with-eureka: true #是否注册到注册中心
@@ -17,8 +19,7 @@ spring:
     name: employee-server
   cloud:
     config:
-      name: employee-server,hystrix-config,db-config,druid-config,oauth-config
-      failFast: true
+      name: employee-server,monitor-config,hystrix-config,db-config,druid-config
       discovery:
         enabled: true
         serviceId: config-server

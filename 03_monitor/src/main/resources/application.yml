@@ -5,4 +5,9 @@ info:
   version: 1.0.0
   app:
     name: ${spring.application.name}
+  company:
+    name: Noageir
+  build:
+    artifacitd: '@project.artifactId@'
+    version: '@project.version@'
 #---------------------------------------------------------------------

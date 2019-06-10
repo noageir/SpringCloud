@@ -5,6 +5,8 @@ eureka:
     health-check-url-path: /actuator/health #健康检查的url
     hostname: localhost
     status-page-url: http://localhost:${server.port}/actuator/info
+    instance-id: ${spring.application.name}-${server.port}
+    prefer-ip-address: true
   client:
     registryFetchIntervalSeconds: 5
     register-with-eureka: true #是否注册到注册中心
@@ -17,7 +19,7 @@ spring:
     name: gateway-server
   cloud:
     config:
-      name: gateway-server,hystrix-config,gateway-config,oauth-config
+      name: gateway-server,monitor-config,hystrix-config,gateway-config
       failFast: true
       discovery:
         enabled: true

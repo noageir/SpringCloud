@@ -8,6 +8,10 @@ spring:
     active: dev
 #---------------------------------------------------------------------
 eureka:
+  #--------------Eureka自我保护机制-------------------
+  #  server:
+  #    enable-self-preservation: false
+  #--------------Eureka自我保护机制-------------------
   instance:
     hostname: localhost
     leaseRenewalIntervalInSeconds: 10

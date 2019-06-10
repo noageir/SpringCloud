@@ -4,9 +4,12 @@ eureka:
     status-page-url-path: /actuator/info #eureka注册中心的url link
     health-check-url-path: /actuator/health #健康检查的url
     hostname: localhost
+    instance-id: ${spring.application.name}-${server.port}
+    prefer-ip-address: true
     metadata-map:
       user.name: ${spring.security.user.name}
       user.password: ${spring.security.user.password}
+    #---------------------------设置admin登录---------------------
     status-page-url: http://localhost:${server.port}/#/wallboard
   client:
     registryFetchIntervalSeconds: 5
@@ -24,7 +27,7 @@ spring:
       password: 'admin'
   cloud:
     config:
-      name: monitor-server
+      name: monitor-server,monitor-config,hystrix-config
       failFast: true
       discovery:
         enabled: true

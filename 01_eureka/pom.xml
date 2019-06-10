@@ -8,6 +8,7 @@
     <groupId>com.micro.system</groupId>
     <packaging>jar</packaging>
     <version>1.0</version>
+    <name>eureka</name>
     <description>注册集成微服务</description>
 
     <parent>
@@ -22,6 +23,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
         <spring.cloud.version>Greenwich.RELEASE</spring.cloud.version>
+        <docker.image.prefix>eureka</docker.image.prefix>
     </properties>
 
     <dependencyManagement>
