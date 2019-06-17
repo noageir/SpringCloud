@@ -1,4 +1,4 @@
-create table data_base.ms_user_info
+create table data.ms_user_info
 (
   id            int auto_increment comment '序号',
   user_name     nvarchar(50) not null comment '姓名',

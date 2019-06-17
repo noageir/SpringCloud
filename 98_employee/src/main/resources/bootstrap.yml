@@ -19,7 +19,7 @@ spring:
     name: employee-server
   cloud:
     config:
-      name: employee-server,monitor-config,hystrix-config,db-config,druid-config
+      name: employee-server,redis-config,monitor-config,hystrix-config,db-config,druid-config
       discovery:
         enabled: true
         serviceId: config-server

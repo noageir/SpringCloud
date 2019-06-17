@@ -1,10 +1,11 @@
 package com.micro.system.employee.web;
 
-import com.micro.system.employee.model.form.HelloTestForm;
 import io.swagger.annotations.Api;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * @author Noageir
@@ -21,11 +22,5 @@ public class HelloRest {
     @GetMapping("/test")
     public String test() {
         return "Hello, I'm one";
-    }
-
-    @PostMapping("/getTestName")
-    public String getTestName(@RequestBody HelloTestForm helloTestForm) {
-        logger.info("02--" + helloTestForm.getSerialNumber() + "--User:" + helloTestForm.getUser());
-        return helloTestForm.toString();
     }
 }

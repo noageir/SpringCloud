@@ -1,0 +1,22 @@
+spring:
+  redis:
+    database: 0
+    host: noageir.club
+    port: 6379
+    password: 111111qaz
+    timeout: 10000
+  lettuce:
+    pool:
+      max-idle: 50          # 连接池中的最大空闲连接默认 8
+      min-idle: 5           # 连接池中的最小空闲连接默认 0
+      max-active: 8         # 连接池最大连接数（使用负值表示没有限制）默认 8
+      max-wait: -1          # 连接池最大阻塞等待时间（使用负值表示没有限制）默认 -1
+      testOnBorrow: false
+      testOnReturn: false
+
+redis:
+  pool:
+    timeBetweenEvictionRunsMillis: 30000
+    testWhileIdle: true
+    numTestsPerEvictionRun: -1
+    minEvictableIdleTimeMillis: 60000

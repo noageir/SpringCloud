@@ -12,14 +12,14 @@
 db:
   master:
     driverClassName: org.mariadb.jdbc.Driver
-    url: jdbc:mariadb://localhost:3306/data_base
+    url: jdbc:mariadb://noageir.club:3306/data
     username: root
-    password: 111111qwe
+    password: 111111qaz
   slave:
     driverClassName: org.mariadb.jdbc.Driver
-    url: jdbc:mariadb://localhost:3306/data_base
+    url: jdbc:mariadb://noageir.club:3306/data
     username: root
-    password: 111111qwe
+    password: 111111qaz
 
 #################DRUID数据配置########################
 druid:
