@@ -12,6 +12,7 @@
         <module>01_eureka</module>
         <module>02_config</module>
         <module>03_monitor</module>
+        <module>04_consumption</module>
         <module>98_employee</module>
         <module>99_gateway</module>
         <module>100_instrument</module>
