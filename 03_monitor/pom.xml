@@ -6,7 +6,7 @@
     <modelVersion>4.0.0</modelVersion>
     <artifactId>monitor</artifactId>
     <groupId>com.micro.system</groupId>
-    <packaging>jar</packaging>
+    <packaging>war</packaging>
     <version>1.0</version>
     <description>监控集成微服务</description>
 

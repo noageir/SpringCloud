@@ -2,9 +2,8 @@
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>gateway</artifactId>
+    <artifactId>zuul</artifactId>
     <groupId>com.micro.system</groupId>
     <packaging>war</packaging>
     <version>1.0</version>
@@ -22,6 +21,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
         <spring.cloud.version>Greenwich.RELEASE</spring.cloud.version>
+        <swagger.version>2.7.0</swagger.version>
     </properties>
 
     <dependencyManagement>
@@ -38,7 +38,7 @@
     </dependencyManagement>
 
     <dependencies>
-        <!--Eureka-->
+        <!--用户服务发现组件-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
@@ -48,35 +48,54 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-config</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-actuator</artifactId>
-        </dependency>
-        <!--网关-->
+        <!--建议网关服务-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-gateway</artifactId>
+            <artifactId>spring-cloud-starter-netflix-zuul</artifactId>
         </dependency>
-        <!--负载均衡-->
-        <!--<dependency>-->
-        <!--<groupId>org.springframework.cloud</groupId>-->
-        <!--<artifactId>spring-cloud-starter-ribbon</artifactId>-->
-        <!--</dependency>-->
-        <!--监控-->
+        <!--引入swagger，方便测试测试代码-->
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <version>${swagger.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+            <version>${swagger.version}</version>
+        </dependency>
+        <!--引入swagger，方便测试测试代码-->
+        <!--通过feign调用其他微服务-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <!--通过feign调用其他微服务-->
+        <!--Tools Start-->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.16.10</version>
         </dependency>
         <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>servlet-api</artifactId>
-            <version>2.5</version>
+            <groupId>commons-lang</groupId>
+            <artifactId>commons-lang</artifactId>
+            <version>2.6</version>
+        </dependency>
+        <dependency>
+            <groupId>com.noageir.springcloud</groupId>
+            <artifactId>util-server</artifactId>
+            <version>1.0</version>
+            <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>com.micro.system</groupId>
             <artifactId>instrument</artifactId>
             <version>1.0</version>
         </dependency>
-
+        <!--Tools End-->
     </dependencies>
+
+
 </project>

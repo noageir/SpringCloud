@@ -4,7 +4,7 @@ eureka:
     status-page-url-path: /actuator/info #eureka注册中心的url link
     health-check-url-path: /actuator/health #健康检查的url
     hostname: localhost
-    status-page-url: http://${eureka.instance.hostname}:${server.port}/actuator/info
+    status-page-url: http://${eureka.instance.hostname}:${server.port}/swagger-ui.html
     instance-id: ${spring.application.name}-${server.port}
     prefer-ip-address: true
   client:
@@ -16,11 +16,10 @@ eureka:
 #---------------------------------------------------------------------
 spring:
   application:
-    name: gateway-server
+    name: manager-server
   cloud:
     config:
-      name: gateway-server,monitor-config,gateway-config
-      failFast: true
+      name: manager-server,redis-config,monitor-config,hystrix-config,db-config,druid-config
       discovery:
         enabled: true
         serviceId: config-server

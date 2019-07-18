@@ -6,7 +6,7 @@
     <modelVersion>4.0.0</modelVersion>
     <artifactId>eureka</artifactId>
     <groupId>com.micro.system</groupId>
-    <packaging>jar</packaging>
+    <packaging>war</packaging>
     <version>1.0</version>
     <name>eureka</name>
     <description>注册集成微服务</description>

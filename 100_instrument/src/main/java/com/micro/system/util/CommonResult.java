@@ -11,7 +11,7 @@ import java.io.Serializable;
  * Package: com.micro.system.util
  */
 @Data
-class CommonResult implements Serializable {
+public class CommonResult implements Serializable {
     /**
      * 异常类
      */
