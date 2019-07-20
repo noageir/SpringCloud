@@ -17,7 +17,7 @@ import java.util.Objects;
  * @author Noageir
  * Date: 2018-05-11 22:03
  * Project: com.spring.cloud
- * Package: com.micro.system.consumption.filter
+ * Package: com.micro.system.manager.filter
  */
 @Aspect
 @Component

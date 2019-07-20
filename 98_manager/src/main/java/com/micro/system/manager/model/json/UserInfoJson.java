@@ -9,7 +9,7 @@ import java.io.Serializable;
  * @author Noageir
  * Date:2018-05-11 23:05
  * Project:com.spring.cloud
- * Package:com.micro.system.consumption.model.json
+ * Package:com.micro.system.manager.model.json
  */
 @Data
 public class UserInfoJson implements Serializable {

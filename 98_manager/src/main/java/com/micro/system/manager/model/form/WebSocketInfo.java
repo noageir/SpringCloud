@@ -7,7 +7,7 @@ import lombok.Data;
  *
  * @author Noageir
  * com.spring.cloud
- * com.micro.system.consumption.model.form
+ * com.micro.system.manager.model.form
  */
 @Data
 public class WebSocketInfo {

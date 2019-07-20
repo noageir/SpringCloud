@@ -16,14 +16,12 @@ import javax.sql.DataSource;
  * @author Noageir
  * Date:2018-05-13 8:48
  * Project:com.spring.cloud
- * Package:com.micro.system.consumption.config
+ * Package:com.micro.system.manager.config
  */
 @Configuration
 @EnableTransactionManagement
 @Log4j2
 public class DataSourceConfig {
-//    private static Logger logger = LoggerFactory.getLogger(DataSourceConfig.class);
-
     @Value("${druid.type}")
     private Class<? extends DataSource> dataSourceType;
 
@@ -33,7 +31,6 @@ public class DataSourceConfig {
     public DataSource masterDataSource() {
         DataSource masterDataSource = DataSourceBuilder.create().type(dataSourceType).build();
         log.info("-----------------主库信息已载入-------------------");
-        log.info("主数据库信息：{}", masterDataSource.toString());
         return masterDataSource;
     }
 
@@ -42,7 +39,6 @@ public class DataSourceConfig {
     public DataSource slaveDataSource() {
         DataSource slaveDataSource = DataSourceBuilder.create().type(dataSourceType).build();
         log.info("-----------------从库信息已载入-------------------");
-        log.info("从数据库信息：{}", slaveDataSource.toString());
         return slaveDataSource;
     }
 }

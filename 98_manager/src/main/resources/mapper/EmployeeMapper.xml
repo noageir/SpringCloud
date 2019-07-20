@@ -24,7 +24,7 @@
         </where>
     </select>
 
-    <insert id="modifyUserInfo" parameterType="com.micro.system.manager.model.form.user.AddUserForm">
+    <insert id="modifyUserInfo" parameterType="com.micro.system.manager.model.entity.AddUser">
         <!--判断是否存在相同的用户名-->
         <selectKey keyProperty="count" resultType="int" order="BEFORE">
             select count(*) from ms_user_info where user_name = #{userName}

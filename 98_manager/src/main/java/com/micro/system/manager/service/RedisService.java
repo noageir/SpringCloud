@@ -9,7 +9,7 @@ import java.util.concurrent.TimeUnit;
  * @author Noageir
  * Date:2018-05-11 23:14
  * Project:com.spring.cloud
- * Package:com.micro.system.consumption.service
+ * Package:com.micro.system.manager.service
  */
 public interface RedisService {
     /**

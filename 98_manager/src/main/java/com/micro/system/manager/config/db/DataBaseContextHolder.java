@@ -4,7 +4,7 @@ package com.micro.system.manager.config.db;
  * @author Noageir
  * Date:2018-05-13 8:52
  * Project:com.spring.cloud
- * Package:com.micro.system.consumption.config
+ * Package:com.micro.system.manager.config
  */
 class DataBaseContextHolder {
 

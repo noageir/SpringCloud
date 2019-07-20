@@ -12,7 +12,7 @@ import javax.validation.constraints.Size;
  * @author Noageir
  * Date:2018-05-13 10:30
  * Project:com.spring.cloud
- * Package:com.micro.system.consumption.model.form
+ * Package:com.micro.system.manager.model.form
  */
 @Data
 public class AddUserForm {

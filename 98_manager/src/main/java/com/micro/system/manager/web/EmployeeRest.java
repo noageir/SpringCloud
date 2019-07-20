@@ -10,8 +10,6 @@ import com.micro.system.util.CommonException;
 import com.micro.system.util.ReturnJson;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,14 +24,12 @@ import java.util.List;
  * @author Noageir
  * Date:2018-05-11 23:11
  * Project:com.spring.cloud
- * Package:com.micro.system.consumption.web
+ * Package:com.micro.system.manager.web
  */
 @RestController
-@RequestMapping("/consumption")
+@RequestMapping("/manager")
 @Api(description = "员工信息管理")
 public class EmployeeRest {
-    private static final Logger logger = LoggerFactory.getLogger(EmployeeRest.class);
-
     private final EmployeeService employeeService;
 
     @Autowired

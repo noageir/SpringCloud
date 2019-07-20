@@ -10,7 +10,7 @@ import java.util.List;
  * @author Noageir
  * Date:2018-05-11 23:14
  * Project:com.spring.cloud
- * Package:com.micro.system.consumption.service
+ * Package:com.micro.system.manager.service
  */
 public interface EmployeeService {
     /**

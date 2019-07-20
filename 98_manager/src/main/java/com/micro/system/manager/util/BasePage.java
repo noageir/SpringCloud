@@ -11,7 +11,7 @@ import java.io.Serializable;
  * @author Noageir
  * Date: 2018-05-11 22:03
  * Project: com.spring.cloud
- * Package: com.micro.system.consumption.util
+ * Package: com.micro.system.manager.util
  */
 @Data
 public class BasePage implements Serializable {

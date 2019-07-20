@@ -1,8 +1,9 @@
 package com.micro.system.manager.mapper;
 
-import com.micro.system.manager.model.form.user.AddUserForm;
+import com.micro.system.manager.model.entity.AddUser;
 import com.micro.system.manager.model.form.user.UserInfoForm;
 import com.micro.system.manager.model.json.UserInfoJson;
+import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 
@@ -10,8 +11,9 @@ import java.util.List;
  * @author Noageir
  * Date:2018-05-11 23:00
  * Project:com.spring.cloud
- * Package:com.micro.system.consumption.mapper
+ * Package:com.micro.system.manager.mapper
  */
+@Mapper
 public interface EmployeeMapper {
     /**
      * 查询用户信息
@@ -27,7 +29,7 @@ public interface EmployeeMapper {
      * @param addUserForm 入参
      * @return True or False
      */
-    Boolean modifyUserInfo(AddUserForm addUserForm);
+    Boolean modifyUserInfo(AddUser addUser);
 
     /**
      * 删除用户信息

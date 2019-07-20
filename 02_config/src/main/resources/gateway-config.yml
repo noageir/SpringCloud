@@ -15,10 +15,10 @@ spring:
           enabled: true
       routes:
         #配置管理端的微服务
-        - id: consumption-server
-          uri: lb://consumption-server
+        - id: manager-server
+          uri: lb://manager-server
           predicates:
-            - Path=/consumption/**
+            - Path=/manager/**
           filters:
             - StripPrefix=1
         #配置跳转监控的微服务

@@ -11,7 +11,7 @@ import javax.validation.constraints.Size;
  * @author Noageir
  * Date:2018-05-11 23:03
  * Project:com.spring.cloud
- * Package:com.micro.system.consumption.model.form
+ * Package:com.micro.system.manager.model.form
  */
 @EqualsAndHashCode(callSuper = true)
 @Data

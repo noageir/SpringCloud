@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
  * @author Noageir
  * Date:2018-05-13 8:57
  * Project:com.spring.cloud
- * Package:com.micro.system.consumption.config.db
+ * Package:com.micro.system.manager.config.db
  */
 @Aspect
 @Component

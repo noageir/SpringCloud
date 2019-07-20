@@ -15,7 +15,7 @@ import java.util.concurrent.TimeUnit;
  * @author Noageir
  * Date:2018-05-11 23:14
  * Project:com.spring.cloud
- * Package:com.micro.system.consumption.service.impl
+ * Package:com.micro.system.manager.service.impl
  */
 @Service
 public class RedisServiceImpl implements RedisService {
