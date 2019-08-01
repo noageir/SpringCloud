@@ -30,6 +30,7 @@ import java.util.Map;
 public class DataBaseConfig extends MybatisAutoConfiguration {
     @Resource(name = "masterDataSource")
     private DataSource masterDataSource;
+
     @Resource(name = "slaveDataSource")
     private DataSource slaveDataSource;
 
@@ -46,7 +47,9 @@ public class DataBaseConfig extends MybatisAutoConfiguration {
 
         RoutingDataSource proxy = new RoutingDataSource();
         Map<Object, Object> targetDataSource = new HashMap<>(2);
+
         targetDataSource.put(DataBaseContextHolder.DataBaseType.MASTER, masterDataSource);
+
         targetDataSource.put(DataBaseContextHolder.DataBaseType.SLAVE, slaveDataSource);
         //默认数据源
         proxy.setDefaultTargetDataSource(masterDataSource);
