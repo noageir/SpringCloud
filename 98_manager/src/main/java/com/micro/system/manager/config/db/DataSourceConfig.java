@@ -25,20 +25,20 @@ public class DataSourceConfig {
     @Value("${druid.type}")
     private Class<? extends DataSource> dataSourceType;
 
-    @Bean(name = "masterDataSource")
+    @Bean(name = "writeDataSource")
     @Primary
-    @ConfigurationProperties(prefix = "druid.master")
-    public DataSource masterDataSource() {
-        DataSource masterDataSource = DataSourceBuilder.create().type(dataSourceType).build();
-        log.info("-----------------主库信息已载入-------------------");
-        return masterDataSource;
+    @ConfigurationProperties(prefix = "druid.write")
+    public DataSource writeDataSource() {
+        DataSource writeDataSource = DataSourceBuilder.create().type(dataSourceType).build();
+        log.info("-----------------Database Write Library Information Has Been Loaded-------------------");
+        return writeDataSource;
     }
 
-    @Bean(name = "slaveDataSource")
-    @ConfigurationProperties(prefix = "druid.slave")
-    public DataSource slaveDataSource() {
-        DataSource slaveDataSource = DataSourceBuilder.create().type(dataSourceType).build();
-        log.info("-----------------从库信息已载入-------------------");
-        return slaveDataSource;
+    @Bean(name = "readDataSource")
+    @ConfigurationProperties(prefix = "druid.read")
+    public DataSource readDataSource() {
+        DataSource readDataSource = DataSourceBuilder.create().type(dataSourceType).build();
+        log.info("-----------------Database Read Library Information Has Been Loaded-------------------");
+        return readDataSource;
     }
 }

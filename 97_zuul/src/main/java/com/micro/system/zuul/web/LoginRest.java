@@ -5,8 +5,7 @@ import com.micro.system.zuul.model.form.LoginForm;
 import com.micro.system.zuul.service.LoginService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,18 +20,13 @@ import org.springframework.web.bind.annotation.RestController;
  * Package: com.micro.system.zuul.web
  */
 @RestController
+@Log4j2
 @RequestMapping("/valid")
 @Api(description = "登录")
 public class LoginRest {
-    private static final Logger logger = LoggerFactory.getLogger(LoginRest.class);
-
-    private final LoginService loginService;
 
     @Autowired
-    public LoginRest(LoginService loginService) {
-        this.loginService = loginService;
-    }
-
+    private LoginService loginService;
 
     @PostMapping("/login")
     @ApiOperation(value = "登录", notes = "验证账户和密码等信息，返回验证结果", response = Boolean.class)
@@ -41,7 +35,7 @@ public class LoginRest {
     }
 
     @PostMapping("/logout")
-    @ApiOperation(value = "登录", notes = "测试", response = Boolean.class)
+    @ApiOperation(value = "登出", notes = "注销当前登录账户，清理缓存信息", response = Boolean.class)
     public ReturnJson logoutSystem() {
 
 

@@ -1,0 +1,7 @@
+#RabbitMQ
+spring:
+  rabbitmq:
+    host: noageir.club
+    port: 5672
+    username: yhc
+    password: yhc

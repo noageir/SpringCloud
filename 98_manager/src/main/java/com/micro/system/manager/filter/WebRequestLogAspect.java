@@ -1,11 +1,10 @@
 package com.micro.system.manager.filter;
 
 import com.micro.system.util.LoggerPoint;
+import lombok.extern.log4j.Log4j2;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -21,8 +20,8 @@ import java.util.Objects;
  */
 @Aspect
 @Component
+@Log4j2
 public class WebRequestLogAspect {
-    private static final Logger logger = LoggerFactory.getLogger(WebRequestLogAspect.class);
 
     @Pointcut("execution(public * com.micro.system.*.web..*.*(..))")
     public void logPointCut() {
@@ -49,7 +48,7 @@ public class WebRequestLogAspect {
         long startTime = System.currentTimeMillis();
         // ob 为方法的返回值
         Object ob = pjp.proceed();
-        logger.info("Time Consuming:{}", (System.currentTimeMillis() - startTime));
+        log.info("Time Consuming:{}", (System.currentTimeMillis() - startTime));
         return ob;
     }
 }

@@ -28,11 +28,11 @@ import java.util.Map;
 @Configuration
 @AutoConfigureAfter({DataSourceConfig.class})
 public class DataBaseConfig extends MybatisAutoConfiguration {
-    @Resource(name = "masterDataSource")
-    private DataSource masterDataSource;
+    @Resource(name = "writeDataSource")
+    private DataSource writeDataSource;
 
-    @Resource(name = "slaveDataSource")
-    private DataSource slaveDataSource;
+    @Resource(name = "readDataSource")
+    private DataSource readDataSource;
 
     public DataBaseConfig(MybatisProperties properties, ObjectProvider<Interceptor[]> interceptorsProvider, ResourceLoader resourceLoader, ObjectProvider<DatabaseIdProvider> databaseIdProvider, ObjectProvider<List<ConfigurationCustomizer>> configurationCustomizersProvider) {
         super(properties, interceptorsProvider, resourceLoader, databaseIdProvider, configurationCustomizersProvider);
@@ -48,11 +48,11 @@ public class DataBaseConfig extends MybatisAutoConfiguration {
         RoutingDataSource proxy = new RoutingDataSource();
         Map<Object, Object> targetDataSource = new HashMap<>(2);
 
-        targetDataSource.put(DataBaseContextHolder.DataBaseType.MASTER, masterDataSource);
+        targetDataSource.put(DataBaseContextHolder.DataBaseType.WRITE, writeDataSource);
 
-        targetDataSource.put(DataBaseContextHolder.DataBaseType.SLAVE, slaveDataSource);
+        targetDataSource.put(DataBaseContextHolder.DataBaseType.READ, readDataSource);
         //默认数据源
-        proxy.setDefaultTargetDataSource(masterDataSource);
+        proxy.setDefaultTargetDataSource(writeDataSource);
         //装入两个主从数据源
         proxy.setTargetDataSources(targetDataSource);
         return proxy;

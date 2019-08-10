@@ -10,12 +10,12 @@
 
 #配置数据库连接url用户密码
 db:
-  master:
+  write:
     driverClassName: org.mariadb.jdbc.Driver
     url: jdbc:mariadb://noageir.club:3306/data
     username: root
     password: 111111qaz
-  slave:
+  read:
     driverClassName: org.mariadb.jdbc.Driver
     url: jdbc:mariadb://noageir.club:3306/data
     username: root
@@ -25,11 +25,11 @@ db:
 druid:
   type: com.alibaba.druid.pool.DruidDataSource
   #写库配置
-  master:
-    driverClassName: ${db.master.driverClassName}
-    url: ${db.master.url}
-    username: ${db.master.username}
-    password: ${db.master.password}
+  write:
+    driverClassName: ${db.write.driverClassName}
+    url: ${db.write.url}
+    username: ${db.write.username}
+    password: ${db.write.password}
     initialSize: 5
     minIdle: 1
     maxActive: 100
@@ -48,11 +48,11 @@ druid:
     logAbandoned: true
     filters: stat,wall
   #读库配置
-  slave:
-    driverClassName: ${db.slave.driverClassName}
-    url: ${db.slave.url}
-    username: ${db.slave.username}
-    password: ${db.slave.password}
+  read:
+    driverClassName: ${db.read.driverClassName}
+    url: ${db.read.url}
+    username: ${db.read.username}
+    password: ${db.read.password}
     initialSize: 5
     minIdle: 1
     maxActive: 100

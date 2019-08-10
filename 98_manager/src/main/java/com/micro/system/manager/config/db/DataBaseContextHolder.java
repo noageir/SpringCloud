@@ -11,7 +11,7 @@ class DataBaseContextHolder {
     private static final ThreadLocal<DataBaseType> CONTEXT_HOLDER = new ThreadLocal<>();
 
     static DataBaseType getDataBaseType() {
-        return CONTEXT_HOLDER.get() == null ? DataBaseType.MASTER : CONTEXT_HOLDER.get();
+        return CONTEXT_HOLDER.get() == null ? DataBaseType.WRITE : CONTEXT_HOLDER.get();
     }
 
     static void setDataBaseType(DataBaseType dataBaseType) {
@@ -30,6 +30,6 @@ class DataBaseContextHolder {
          * MASTER 主库
          * SLAVE 从库
          */
-        MASTER, SLAVE
+        WRITE, READ
     }
 }

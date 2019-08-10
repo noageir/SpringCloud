@@ -1,10 +1,9 @@
 package com.micro.system.manager.config.db;
 
+import lombok.extern.log4j.Log4j2;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.core.Ordered;
 import org.springframework.stereotype.Component;
 
@@ -16,18 +15,18 @@ import org.springframework.stereotype.Component;
  */
 @Aspect
 @Component
+@Log4j2
 public class ReadOnlyConnectionInterceptor implements Ordered {
-    private static final Logger logger = LoggerFactory.getLogger(ReadOnlyConnectionInterceptor.class);
 
     @Around("@annotation(readOnlyConnection)")
     public Object proceed(ProceedingJoinPoint proceedingJoinPoint, ReadOnlyConnection readOnlyConnection) throws Throwable {
         try {
-            logger.info("---------------设置为从库---------------");
-            DataBaseContextHolder.setDataBaseType(DataBaseContextHolder.DataBaseType.SLAVE);
+            log.info("---------------The Database Is Set To The Read Library---------------");
+            DataBaseContextHolder.setDataBaseType(DataBaseContextHolder.DataBaseType.READ);
             return proceedingJoinPoint.proceed();
         } finally {
             DataBaseContextHolder.clearDataBaseType();
-            logger.info("---------------清空数据库设置---------------");
+            log.info("---------------Clear Database Settings---------------");
         }
     }
 

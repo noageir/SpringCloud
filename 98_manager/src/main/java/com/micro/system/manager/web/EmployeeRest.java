@@ -10,6 +10,7 @@ import com.micro.system.util.CommonException;
 import com.micro.system.util.ReturnJson;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,15 +28,12 @@ import java.util.List;
  * Package:com.micro.system.manager.web
  */
 @RestController
+@Log4j2
 @RequestMapping("/manager")
 @Api(description = "员工信息管理")
 public class EmployeeRest {
-    private final EmployeeService employeeService;
-
     @Autowired
-    public EmployeeRest(EmployeeService employeeService) {
-        this.employeeService = employeeService;
-    }
+    private EmployeeService employeeService;
 
     @PostMapping("/query_user_info")
     @ApiOperation(value = "查询用户信息", notes = "通过入参筛选符合要求的用户信息，返回结果", response = UserInfoJson.class)
