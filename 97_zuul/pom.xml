@@ -84,12 +84,6 @@
             <version>2.6</version>
         </dependency>
         <dependency>
-            <groupId>com.noageir.springcloud</groupId>
-            <artifactId>util-server</artifactId>
-            <version>1.0</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
             <groupId>com.micro.system</groupId>
             <artifactId>instrument</artifactId>
             <version>1.0</version>
