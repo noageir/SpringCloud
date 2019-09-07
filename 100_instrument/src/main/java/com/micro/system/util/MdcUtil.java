@@ -1,7 +1,5 @@
 package com.micro.system.util;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.slf4j.MDC;
 
 /**
@@ -23,7 +21,6 @@ public class MdcUtil {
      * 请求事物ID
      */
     public static final String MDC_TRANSACTION_ID = "transactionId";
-    private static final Logger logger = LoggerFactory.getLogger(MdcUtil.class);
 
     /**
      * 获取请求用的角色

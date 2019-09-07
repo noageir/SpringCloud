@@ -1,5 +1,6 @@
 package com.micro.system.util;
 
+import lombok.Data;
 import org.springframework.util.StringUtils;
 
 import java.util.Date;
@@ -10,6 +11,7 @@ import java.util.Date;
  * Project: com.spring.cloud
  * Package: com.micro.system.util
  */
+@Data
 public class Entity {
     private static final String BY_NONE = "none";
 
@@ -38,7 +40,7 @@ public class Entity {
      */
     private Date dateUpdated;
 
-    public Entity() {
+    protected Entity() {
         super();
     }
 
@@ -55,24 +57,12 @@ public class Entity {
         this.dateUpdated = dateUpdated;
     }
 
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
     public String getUpdatedBy() {
         if (StringUtils.isEmpty(updatedBy)) {
             String mdcUserId = MdcUtil.getUserId();
             updatedBy = StringUtils.isEmpty(mdcUserId) ? BY_NONE : mdcUserId;
         }
         return updatedBy;
-    }
-
-    public void setUpdatedBy(String updatedBy) {
-        this.updatedBy = updatedBy;
     }
 
     public String getCreatedBy() {
@@ -83,10 +73,6 @@ public class Entity {
         return createdBy;
     }
 
-    public void setCreatedBy(String createdBy) {
-        this.createdBy = createdBy;
-    }
-
     public Date getDateUpdated() {
         if (dateUpdated == null) {
             dateUpdated = new Date();
@@ -94,18 +80,10 @@ public class Entity {
         return dateUpdated;
     }
 
-    public void setDateUpdated(Date dateUpdated) {
-        this.dateUpdated = dateUpdated;
-    }
-
     public Date getDateCreated() {
         if (dateCreated == null) {
             dateCreated = new Date();
         }
         return dateCreated;
-    }
-
-    public void setDateCreated(Date dateCreated) {
-        this.dateCreated = dateCreated;
     }
 }

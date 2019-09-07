@@ -30,6 +30,7 @@ public class DataSourceConfig {
     @ConfigurationProperties(prefix = "druid.write")
     public DataSource writeDataSource() {
         DataSource writeDataSource = DataSourceBuilder.create().type(dataSourceType).build();
+        log.info("--------------------------------------------------------------------------------------");
         log.info("-----------------Database Write Library Information Has Been Loaded-------------------");
         return writeDataSource;
     }
@@ -38,7 +39,8 @@ public class DataSourceConfig {
     @ConfigurationProperties(prefix = "druid.read")
     public DataSource readDataSource() {
         DataSource readDataSource = DataSourceBuilder.create().type(dataSourceType).build();
-        log.info("-----------------Database Read Library Information Has Been Loaded-------------------");
+        log.info("-----------------Database  Read Library Information Has Been Loaded-------------------");
+        log.info("--------------------------------------------------------------------------------------");
         return readDataSource;
     }
 }

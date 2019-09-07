@@ -18,7 +18,7 @@ import java.util.List;
 @Data
 public class ExcelListener extends AnalysisEventListener {
 
-    private List<Object> data = new ArrayList<Object>();
+    private List<Object> data = new ArrayList<>();
 
     public void invoke(Object o, AnalysisContext analysisContext) {
         data.add(o);

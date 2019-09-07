@@ -27,7 +27,7 @@ public class ErrorPoint {
         //输出错误详细信息
         logger.error(exception.getMessage(), exception);
         //按需重新封装需要返回的错误信息
-        List<ArgumentInvalidResult> invalidArguments = new ArrayList<ArgumentInvalidResult>();
+        List<ArgumentInvalidResult> invalidArguments = new ArrayList<>();
         //解析原错误信息，封装后返回，此处返回非法的字段名称，原始值，错误信息
 
         List<FieldError> fieldErrors = exception.getBindingResult().getFieldErrors();

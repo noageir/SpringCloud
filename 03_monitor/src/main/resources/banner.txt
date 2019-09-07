@@ -1,3 +1,5 @@
+
+
   __  __                   _   _                       _____                 _
  |  \/  |                 (_) | |                     / ____|               | |
  | \  / |   ___    _ __    _  | |_    ___    _ __    | (___    _   _   ___  | |_    ___   _ __ ___
@@ -6,8 +8,6 @@
  |_|  |_|  \___/  |_| |_| |_|  \__|  \___/  |_|      |_____/   \__, | |___/  \__|  \___| |_| |_| |_|
                                                                 __/ |
                                                                |___/
-
-
 ${AnsiColor.BRIGHT_RED}
 Spring Boot Version: ${spring-boot.version}${spring-boot.formatted-version}
 System Version: ${info.version}

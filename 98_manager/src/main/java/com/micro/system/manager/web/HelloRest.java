@@ -14,13 +14,13 @@ import org.springframework.web.bind.annotation.RestController;
  * Package:com.micro.system.eureka
  */
 @RestController
-@RequestMapping("/employee_hello")
-@Api(description = "测试类")
+@RequestMapping("/hello")
+@Api(value = "测试类")
 public class HelloRest {
     private static final Logger logger = LoggerFactory.getLogger(HelloRest.class);
 
-    @GetMapping("/test")
+    @GetMapping("/hello")
     public String test() {
-        return "Hello, I'm one";
+        return "Hello, I'm Test";
     }
 }

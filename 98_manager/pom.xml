@@ -71,12 +71,6 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
         </dependency>
-        <!--web socket-->
-        <dependency>
-            <groupId>org.yeauty</groupId>
-            <artifactId>netty-websocket-spring-boot-starter</artifactId>
-            <version>0.7.6</version>
-        </dependency>
         <!--引入swagger，方便测试测试代码-->
         <dependency>
             <groupId>io.springfox</groupId>

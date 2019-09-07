@@ -39,7 +39,7 @@ public class LoggerPoint {
         MdcUtil.setRoleList(roleList);
 
         logger.info("--01--Request---LoginUserID:" + userId + "---TransactionId:" + transactionId + "----");
-        TreeMap<String, Object> reqMap = new TreeMap<String, Object>();
+        TreeMap<String, Object> reqMap = new TreeMap<>();
         reqMap.put("1-Http Method", request.getMethod());
         reqMap.put("2-Client Ip", getIpAddress(request));
         reqMap.put("3-Request", request.getRequestURL().toString());

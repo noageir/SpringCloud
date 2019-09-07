@@ -12,7 +12,6 @@ import com.micro.system.util.AesUtil;
 import com.micro.system.util.SystemConstant;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -27,8 +26,11 @@ import java.util.List;
 @Log4j2
 public class EmployeeServiceImpl implements EmployeeService {
 
-    @Autowired
-    private EmployeeMapper employeeMapper;
+    private final EmployeeMapper employeeMapper;
+
+    public EmployeeServiceImpl(EmployeeMapper employeeMapper) {
+        this.employeeMapper = employeeMapper;
+    }
 
     @Override
     @WriteOnlyConnection

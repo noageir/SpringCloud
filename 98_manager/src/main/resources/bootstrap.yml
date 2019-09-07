@@ -19,7 +19,7 @@ spring:
     name: manager-server
   cloud:
     config:
-      name: manager-server,redis-config,monitor-config,hystrix-config,db-config,druid-config,mybatis-config
+      name: manager-server,db-config,druid-config,mybatis-config,redis-config,monitor-config,hystrix-config
       discovery:
         enabled: true
         serviceId: config-server

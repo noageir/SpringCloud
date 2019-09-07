@@ -43,7 +43,7 @@ public class DateUtil {
     /**
      * 格式化指定的时间
      */
-    public static String formatDate(Date date, String format) {
+    private static String formatDate(Date date, String format) {
         if (date == null || StringUtils.isBlank(format)) {
             return "";
         }
@@ -77,14 +77,14 @@ public class DateUtil {
      *
      * @return String
      */
-    public static String generateCurrentTimeMillis() {
+    static String generateCurrentTimeMillis() {
         return String.valueOf(System.currentTimeMillis());
     }
 
     /**
      * 判断firstTime是否在secondTime之后，忽略日期部分
      */
-    public static boolean isTimeAfter(Date firstTime, Date secondTime) {
+    private static boolean isTimeAfter(Date firstTime, Date secondTime) {
 
         Calendar calendar1 = Calendar.getInstance();
         calendar1.setTime(firstTime);
@@ -106,7 +106,7 @@ public class DateUtil {
     /**
      * 判断firstTime是否在secondTime之后，不忽略日期部分
      */
-    public static boolean isTimeAfterIncludeDate(Date firstTime, Date secondTime) {
+    private static boolean isTimeAfterIncludeDate(Date firstTime, Date secondTime) {
         Calendar calendar1 = Calendar.getInstance();
         calendar1.setTime(firstTime);
         Calendar calendar2 = Calendar.getInstance();
@@ -132,7 +132,7 @@ public class DateUtil {
     /**
      * 格式化字符串为时间类型
      */
-    public static Date parseDate(String date, String format) throws ParseException {
+    private static Date parseDate(String date, String format) throws ParseException {
         return new SimpleDateFormat(format).parse(date);
     }
 
