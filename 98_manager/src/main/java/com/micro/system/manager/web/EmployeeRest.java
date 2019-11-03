@@ -9,7 +9,6 @@ import com.micro.system.util.ReturnJson;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.log4j.Log4j2;
-import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 import java.util.List;
+
 
 /**
  * @author Noageir
@@ -27,7 +27,7 @@ import java.util.List;
 @RestController
 @Log4j2
 @RequestMapping("/employee")
-@Api(value = "员工信息管理")
+@Api(tags = "员工信息管理")
 public class EmployeeRest {
     private final EmployeeService employeeService;
 
@@ -56,10 +56,10 @@ public class EmployeeRest {
     }
 
     @PostMapping("/check_user_info_pri")
-    @ApiOperation(value = "验证用户", notes = "通过用户输入的账户密码验证是否能正常登录，返回结果", response = Boolean.class)
+    @ApiOperation(value = "验证用户", notes = "通过用户输入的账户密码验证是否能正常登录，返回结果", response = UserInfoJson.class, hidden = true)
     public ReturnJson queryUserInfoPri(@RequestBody UserInfoForm userInfoForm) {
         List<UserInfoJson> userInfo = employeeService.queryUserInfo(userInfoForm);
-        return ReturnJson.success(CollectionUtils.isEmpty(userInfo));
+        return ReturnJson.success(userInfo);
     }
 
 }

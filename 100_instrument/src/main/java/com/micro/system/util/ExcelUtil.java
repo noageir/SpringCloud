@@ -12,7 +12,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author Noageir
@@ -28,19 +30,22 @@ public class ExcelUtil {
      * @param rowModel 实体类映射，继承 BaseRowModel 类
      * @return Excel 数据 list
      */
-    public static List<Object> readExcel(MultipartFile excel, BaseRowModel rowModel) {
+    public static Map<String, List<Object>> readExcelForAll(MultipartFile excel, BaseRowModel rowModel) {
         ExcelListener excelListener = new ExcelListener();
         ExcelReader reader = getReader(excel, excelListener);
+        Map<String, List<Object>> map = new HashMap<>();
         if (reader == null) {
             return null;
         }
+
         for (Sheet sheet : reader.getSheets()) {
             if (rowModel != null) {
                 sheet.setClazz(rowModel.getClass());
             }
             reader.read(sheet);
+            map.put(sheet.getSheetName(), excelListener.getDataInfo());
         }
-        return excelListener.getData();
+        return map;
     }
 
     /**
@@ -51,28 +56,14 @@ public class ExcelUtil {
      * @param sheetNo  sheet 的序号 从1开始
      * @return Excel 数据 list
      */
-    public static List<Object> readExcel(MultipartFile excel, BaseRowModel rowModel, int sheetNo) {
-        return readExcel(excel, rowModel, sheetNo, 1);
-    }
-
-    /**
-     * 读取某个 sheet 的 Excel
-     *
-     * @param excel       文件
-     * @param rowModel    实体类映射，继承 BaseRowModel 类
-     * @param sheetNo     sheet 的序号 从1开始
-     * @param headLineNum 表头行数，默认为1
-     * @return Excel 数据 list
-     */
-    private static List<Object> readExcel(MultipartFile excel, BaseRowModel rowModel, int sheetNo,
-                                          int headLineNum) {
+    public static List<Object> readExcelByOne(MultipartFile excel, BaseRowModel rowModel, int sheetNo) {
         ExcelListener excelListener = new ExcelListener();
         ExcelReader reader = getReader(excel, excelListener);
         if (reader == null) {
             return null;
         }
-        reader.read(new Sheet(sheetNo, headLineNum, rowModel.getClass()));
-        return excelListener.getData();
+        reader.read(new Sheet(sheetNo, 1, rowModel.getClass()));
+        return excelListener.getDataInfo();
     }
 
     /**

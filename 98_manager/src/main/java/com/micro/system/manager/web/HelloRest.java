@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/hello")
-@Api(value = "测试类")
+@Api(tags = "测试类")
 public class HelloRest {
     private static final Logger logger = LoggerFactory.getLogger(HelloRest.class);
 

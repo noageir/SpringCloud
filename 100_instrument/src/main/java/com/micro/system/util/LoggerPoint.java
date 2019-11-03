@@ -8,7 +8,6 @@ import org.slf4j.LoggerFactory;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Arrays;
-import java.util.TreeMap;
 
 
 /**
@@ -38,26 +37,25 @@ public class LoggerPoint {
         MdcUtil.setTransactionId(transactionId);
         MdcUtil.setRoleList(roleList);
 
-        logger.info("--01--Request---LoginUserID:" + userId + "---TransactionId:" + transactionId + "----");
-        TreeMap<String, Object> reqMap = new TreeMap<>();
-        reqMap.put("1-Http Method", request.getMethod());
-        reqMap.put("2-Client Ip", getIpAddress(request));
-        reqMap.put("3-Request", request.getRequestURL().toString());
-        reqMap.put("4-Class", joinPoint.getSignature().getDeclaringTypeName());
-        reqMap.put("5-RestFul", joinPoint.getSignature().getName());
-        reqMap.put("6-Parameter", Arrays.toString(joinPoint.getArgs()));
-        logger.info("Request Info:{}", reqMap.toString());
+        logger.info("--01--Request---------------------");
+        logger.info("0-TransactionId:{}", transactionId);
+        logger.info("1-Http Method:{}", request.getMethod());
+        logger.info("2-Client Ip:{}", getIpAddress(request));
+        logger.info("3-Request:{}", request.getRequestURL().toString());
+        logger.info("4-Class:{}", joinPoint.getSignature().getDeclaringTypeName());
+        logger.info("5-RestFul:{}", joinPoint.getSignature().getName());
+        logger.info("6-Parameter:{}", Arrays.toString(joinPoint.getArgs()));
     }
 
     public static void loggerResponse(Object ret, Class object) {
         Logger logger = LoggerFactory.getLogger(object);
-        logger.info("--02--Response---------------------");
         Gson gson = new Gson();
         String result = gson.toJson(ret);
         logger.info("Return Value:{}", result);
+        logger.info("--02--Response---------------------");
     }
 
-    private static String getIpAddress(HttpServletRequest request) {
+    public static String getIpAddress(HttpServletRequest request) {
         String ip = request.getHeader("x-forwarded-for");
         if (ip == null || ip.length() == 0 || UN_KNOWN.equalsIgnoreCase(ip)) {
             ip = request.getHeader("Proxy-Client-IP");

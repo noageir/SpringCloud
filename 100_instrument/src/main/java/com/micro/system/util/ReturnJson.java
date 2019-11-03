@@ -30,11 +30,11 @@ public class ReturnJson<T> {
     }
 
     public static ReturnJson json(ResponseCode responseCode, Object data) {
-        return new ReturnJson<Object>(responseCode.getCode(), responseCode.getMessage(), data);
+        return new ReturnJson<>(responseCode.getCode(), responseCode.getMessage(), data);
     }
 
     public static ReturnJson json(ResponseCode responseCode) {
-        return new ReturnJson<Object>(responseCode.getCode(), responseCode.getMessage(), null);
+        return new ReturnJson<>(responseCode.getCode(), responseCode.getMessage(), null);
     }
 
     /**
@@ -60,7 +60,7 @@ public class ReturnJson<T> {
      * @param data 返回值
      * @return json串
      */
-    public static ReturnJson fail(Object data) {
+    static ReturnJson fail(Object data) {
         return ReturnJson.json(CommConstant.SYSTEM_FAIL, data);
     }
 
@@ -79,7 +79,7 @@ public class ReturnJson<T> {
      * 根据结果码、结果信息、数据体生成实体
      */
     public static ReturnJson json(String resultCode, String resultMessage, Object data) {
-        return new ReturnJson<Object>(resultCode, resultMessage, data);
+        return new ReturnJson<>(resultCode, resultMessage, data);
     }
 
 

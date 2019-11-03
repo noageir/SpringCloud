@@ -1,5 +1,6 @@
 package com.micro.system.manager.filter;
 
+import com.micro.system.util.ArithUtil;
 import com.micro.system.util.LoggerPoint;
 import lombok.extern.log4j.Log4j2;
 import org.aspectj.lang.JoinPoint;
@@ -44,11 +45,13 @@ public class WebRequestLogAspect {
     }
 
     @Around("logPointCut()")
-    public Object doAround(ProceedingJoinPoint pjp) throws Throwable {
+    public Object doAround(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
         long startTime = System.currentTimeMillis();
         // ob 为方法的返回值
-        Object ob = pjp.proceed();
-        log.info("Time Consuming:{}", (System.currentTimeMillis() - startTime));
+        Object ob = proceedingJoinPoint.proceed();
+        long endTime = System.currentTimeMillis() - startTime;
+        double calculateNum = Double.parseDouble(String.valueOf(endTime));
+        log.info("Time Consuming (Sec):{}", ArithUtil.div(calculateNum, 1000));
         return ob;
     }
 }

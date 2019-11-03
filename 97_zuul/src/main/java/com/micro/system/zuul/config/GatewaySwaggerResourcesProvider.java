@@ -1,6 +1,5 @@
 package com.micro.system.zuul.config;
 
-import org.apache.commons.lang.StringUtils;
 import org.springframework.cloud.netflix.zuul.filters.Route;
 import org.springframework.cloud.netflix.zuul.filters.RouteLocator;
 import org.springframework.context.annotation.Primary;
@@ -31,9 +30,15 @@ public class GatewaySwaggerResourcesProvider implements SwaggerResourcesProvider
         List<SwaggerResource> resources = new ArrayList<>();
         List<Route> routes = routeLocator.getRoutes();
         resources.add(swaggerResource("zuul-server", "/v2/api-docs"));
+
+        List<String> list = new ArrayList<>();
+        list.add("eureka-server");
+        list.add("config-server");
+        list.add("monitor-server");
+
         for (Route route : routes) {
             String serverId = route.getId();
-            if (!StringUtils.equals("eureka-server", serverId) && !StringUtils.equals("config-server", serverId)) {
+            if (!list.contains(serverId)) {
                 String fullPath = route.getFullPath();
                 resources.add(swaggerResource(serverId, fullPath.replace("**", "v2/api-docs")));
             }

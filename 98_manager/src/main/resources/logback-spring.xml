@@ -14,7 +14,7 @@
     <property name="LOG_DIR_PATH" value="${all.log.home:-/logs}/${springAppName}/"/>​
 
     <property name="CONSOLE_LOG_PATTERN"
-              value="%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} [%clr(%X{userId}){yellow} | %clr(${LOG_LEVEL_PATTERN:-%5p}){red}] %clr(%-40.40logger{39}){cyan} %clr(%L){green} : %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}}"/>
+              value="%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint}[%clr(%X{userId}){yellow}|%clr(${LOG_LEVEL_PATTERN:-%6p}){red}] %clr(%-40.40logger{39}){cyan} %clr(%L:){faint} %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}}"/>
 
     <!-- 输出控制台-->
     <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
@@ -63,7 +63,7 @@
     </appender>
 
     <!-- 输出Sql文件 -->​
-    <!-- <appender name="sql" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <appender name="sql" class="ch.qos.logback.core.rolling.RollingFileAppender">
          <file>${LOG_DIR_PATH}/sql.log</file>
          <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
              <fileNamePattern>${LOG_DIR_PATH}/sql.log.%d{yyyy-MM-dd}.log</fileNamePattern>
@@ -74,15 +74,40 @@
          </encoder>
      </appender>
 
-     <logger name="com.micro.system.manager.mapper" level="DEBUG" additivity="false">
+    <appender name="ASYNC_INFO" class="ch.qos.logback.classic.AsyncAppender">
+        <!-- 设置为不丢失日志,默认如果队列的80%已满,则会丢弃TRACT、DEBUG、INFO级别的日志 -->
+        <discardingThreshold>0</discardingThreshold>
+        <!-- 更改默认的队列的深度,默认值为256 -->
+        <queueSize>512</queueSize>
+        <appender-ref ref="info"/>
+    </appender>
+
+    <appender name="ASYNC_ERROR" class="ch.qos.logback.classic.AsyncAppender">
+        <!-- 设置为不丢失日志,默认如果队列的80%已满,则会丢弃TRACT、DEBUG、INFO级别的日志 -->
+        <discardingThreshold>0</discardingThreshold>
+        <!-- 更改默认的队列的深度,默认值为256 -->
+        <queueSize>512</queueSize>
+        <appender-ref ref="error"/>
+    </appender>
+
+    <appender name="ASYNC_SQL" class="ch.qos.logback.classic.AsyncAppender">
+        <!-- 设置为不丢失日志,默认如果队列的80%已满,则会丢弃TRACT、DEBUG、INFO级别的日志 -->
+        <discardingThreshold>0</discardingThreshold>
+        <!-- 更改默认的队列的深度,默认值为256 -->
+        <queueSize>512</queueSize>
+        <appender-ref ref="sql"/>
+    </appender>
+
+
+    <logger name="com.micro.system.manager.mapper" level="DEBUG" additivity="false">
          <appender-ref ref="console"/>
-         <appender-ref ref="sql"/>
-     </logger> -->​
+        <!--         <appender-ref ref="sql"/>-->
+    </logger>
 
     <logger name="com.micro.system" level="INFO" additivity="false">
         <appender-ref ref="console"/>
-        <appender-ref ref="info"/>
-        <appender-ref ref="error"/>
+        <!--        <appender-ref ref="info"/>-->
+        <!--        <appender-ref ref="error"/>-->
     </logger>
 
     <!-- org.springframework.web包下的日志输出级别和输出方式配置 -->
