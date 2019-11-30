@@ -22,13 +22,13 @@
     </properties>
 
     <modules>
-        <module>01_eureka</module>
-        <module>02_config</module>
-        <module>03_monitor</module>
-        <module>97_zuul</module>
-        <module>98_manager</module>
-        <module>99_gateway</module>
-        <module>100_instrument</module>
+        <module>eureka</module>
+        <module>config</module>
+        <module>monitor</module>
+        <module>zuul</module>
+        <module>manager</module>
+        <module>gateway</module>
+        <module>instrument</module>
     </modules>
 
     <build>
