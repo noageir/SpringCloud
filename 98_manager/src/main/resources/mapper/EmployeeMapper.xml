@@ -101,10 +101,53 @@
         </if>
     </insert>
 
-    <delete id="removeUserInfo" parameterType="com.micro.system.manager.model.form.user.UserInfoForm">
+    <delete id="removeUserInfo" parameterType="com.micro.system.manager.model.entity.AddUser">
         delete
         from ms_user_info
         where user_name = #{userName}
     </delete>
 
+    <insert id="saveUserInfo" parameterType="com.micro.system.manager.model.entity.AddUser">
+        insert into ms_user_info
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test='userName != null and userName != "" '>
+                user_name,
+            </if>
+            <if test='userPassword != null and userPassword != "" '>
+                user_password,
+            </if>
+            <if test='userAge != null and userAge != "" '>
+                age,
+            </if>
+            <if test='gender != null and gender != "" '>
+                gender,
+            </if>
+            <if test='phone != null and phone != "" '>
+                phone_call,
+            </if>
+            <if test='address != null and address != "" '>
+                address,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test='userName != null and userName != "" '>
+                #{userName},
+            </if>
+            <if test='userPassword != null and userPassword != "" '>
+                #{userPassword},
+            </if>
+            <if test='userAge != null and userAge != "" '>
+                #{userAge},
+            </if>
+            <if test='gender != null and gender != "" '>
+                #{gender},
+            </if>
+            <if test='phone != null and phone != "" '>
+                #{phone},
+            </if>
+            <if test='address != null and address != "" '>
+                #{address},
+            </if>
+        </trim>
+    </insert>
 </mapper>

@@ -5,6 +5,7 @@ import com.micro.system.manager.model.form.user.AddUserForm;
 import com.micro.system.manager.model.form.user.UserInfoForm;
 import com.micro.system.manager.model.json.UserInfoJson;
 import com.micro.system.manager.service.EmployeeService;
+import com.micro.system.util.DateUtil;
 import com.micro.system.util.ReturnJson;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -60,6 +61,15 @@ public class EmployeeRest {
     public ReturnJson queryUserInfoPri(@RequestBody UserInfoForm userInfoForm) {
         List<UserInfoJson> userInfo = employeeService.queryUserInfo(userInfoForm);
         return ReturnJson.success(userInfo);
+    }
+
+    @PostMapping("/modify_user_info_batch")
+    @ApiOperation(value = "新增或修改用户信息", notes = "通过入参添加或修改用户信息，返回结果", response = Boolean.class)
+    public ReturnJson modifyUserInfoBatch() {
+        log.info("开始批量进行数据写入:{}", DateUtil.generateSystemTimestamp());
+        employeeService.modifyUserInfoBatch();
+        log.info("结束批量进行数据写入:{}", DateUtil.generateSystemTimestamp());
+        return ReturnJson.success(true);
     }
 
 }

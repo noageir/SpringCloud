@@ -15,3 +15,5 @@ create table data.ms_user_info
     primary key (id)
 );
 
+create unique index ms_user_info_user_name_uindex
+    on ms_user_info (user_name);

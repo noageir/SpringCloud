@@ -1,7 +1,6 @@
 package com.micro.system.manager.web;
 
 import com.alibaba.excel.util.CollectionUtils;
-import com.micro.system.manager.model.file.FileExport;
 import com.micro.system.manager.model.file.FileUpload;
 import com.micro.system.util.ExcelUtil;
 import com.micro.system.util.ReturnJson;
@@ -10,13 +9,10 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.validation.Valid;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -64,19 +60,4 @@ public class FileRest {
         }
         return ReturnJson.success(true);
     }
-
-    @PostMapping("/file_export")
-    @ApiOperation(value = "文件下载", notes = "通过入参下载文件，返回结果", response = Boolean.class)
-    public ReturnJson fileExport(@Valid @RequestBody FileExport fileExport) {
-        List<FileUpload> fileUploads = new ArrayList<>();
-        for (int i = 0; i < 1000; i++) {
-            FileUpload fileUpload = new FileUpload();
-            fileUpload.setName("Tom" + i);
-            fileUpload.setAge(String.valueOf(i + 10));
-            fileUploads.add(fileUpload);
-        }
-
-        return ReturnJson.success(true);
-    }
-
 }

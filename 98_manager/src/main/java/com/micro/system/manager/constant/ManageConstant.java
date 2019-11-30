@@ -14,6 +14,7 @@ public class ManageConstant implements Serializable {
     /**
      * 错误码
      */
-    public static final ResponseCode RESULT_NULL = new ResponseCode("Mr1000001", "查询无数据");
+    public static final ResponseCode RESULT_NULL = new ResponseCode("Mr1000001", "批量新增用户失败");
+
 
 }

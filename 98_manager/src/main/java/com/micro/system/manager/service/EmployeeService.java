@@ -3,6 +3,7 @@ package com.micro.system.manager.service;
 import com.micro.system.manager.model.form.user.AddUserForm;
 import com.micro.system.manager.model.form.user.UserInfoForm;
 import com.micro.system.manager.model.json.UserInfoJson;
+import org.springframework.scheduling.annotation.Async;
 
 import java.util.List;
 
@@ -37,5 +38,13 @@ public interface EmployeeService {
      */
     List<UserInfoJson> queryUserInfo(UserInfoForm userInfoForm);
 
+    /**
+     * 批量新增用户信息
+     *
+     * @param addUserForm 用户参数
+     * @return Boolean
+     */
+    @Async
+    void modifyUserInfoBatch();
 
 }

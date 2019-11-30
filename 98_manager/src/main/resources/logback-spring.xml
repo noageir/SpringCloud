@@ -64,15 +64,15 @@
 
     <!-- 输出Sql文件 -->​
     <appender name="sql" class="ch.qos.logback.core.rolling.RollingFileAppender">
-         <file>${LOG_DIR_PATH}/sql.log</file>
-         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-             <fileNamePattern>${LOG_DIR_PATH}/sql.log.%d{yyyy-MM-dd}.log</fileNamePattern>
-         </rollingPolicy>
-         <encoder>
-             <pattern>${CONSOLE_LOG_PATTERN}</pattern>
-             <charset>UTF-8</charset>
-         </encoder>
-     </appender>
+        <file>${LOG_DIR_PATH}/sql.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_DIR_PATH}/sql.log.%d{yyyy-MM-dd}.log</fileNamePattern>
+        </rollingPolicy>
+        <encoder>
+            <pattern>${CONSOLE_LOG_PATTERN}</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
 
     <appender name="ASYNC_INFO" class="ch.qos.logback.classic.AsyncAppender">
         <!-- 设置为不丢失日志,默认如果队列的80%已满,则会丢弃TRACT、DEBUG、INFO级别的日志 -->
@@ -99,27 +99,27 @@
     </appender>
 
 
-    <logger name="com.micro.system.manager.mapper" level="DEBUG" additivity="false">
-         <appender-ref ref="console"/>
-        <!--         <appender-ref ref="sql"/>-->
+    <logger name="com.micro.system.manager.mapper" level="INFO" additivity="false">
+        <appender-ref ref="console"/>
+        <appender-ref ref="ASYNC_SQL"/>
     </logger>
 
     <logger name="com.micro.system" level="INFO" additivity="false">
         <appender-ref ref="console"/>
-        <!--        <appender-ref ref="info"/>-->
-        <!--        <appender-ref ref="error"/>-->
+        <appender-ref ref="ASYNC_INFO"/>
+        <appender-ref ref="ASYNC_ERROR"/>
     </logger>
 
     <!-- org.springframework.web包下的日志输出级别和输出方式配置 -->
     <logger name="org.springframework.web" level="INFO" additivity="false">
         <appender-ref ref="console"/>
-        <!--<appender-ref ref="info"/>-->
-        <!--<appender-ref ref="error"/>-->
+        <appender-ref ref="ASYNC_INFO"/>
+        <appender-ref ref="ASYNC_ERROR"/>
     </logger>
 
     <root level="INFO">
         <appender-ref ref="console"/>
-        <!--<appender-ref ref="info"/>-->
-        <!--<appender-ref ref="error"/>-->
+        <appender-ref ref="ASYNC_INFO"/>
+        <appender-ref ref="ASYNC_ERROR"/>
     </root>
 </configuration>

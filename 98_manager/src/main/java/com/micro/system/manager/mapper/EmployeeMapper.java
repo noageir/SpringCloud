@@ -35,5 +35,5 @@ public interface EmployeeMapper {
      * @param userInfoForm 入参
      * @return True or False
      */
-    Boolean removeUserInfo(UserInfoForm userInfoForm);
+    Boolean removeUserInfo(AddUser addUser);
 }
