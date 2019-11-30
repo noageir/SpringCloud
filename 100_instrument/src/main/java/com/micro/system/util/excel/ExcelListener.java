@@ -2,7 +2,7 @@ package com.micro.system.util.excel;
 
 import com.alibaba.excel.context.AnalysisContext;
 import com.alibaba.excel.event.AnalysisEventListener;
-import com.alibaba.excel.metadata.ExcelHeadProperty;
+import com.alibaba.excel.metadata.BaseRowModel;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -20,32 +20,19 @@ import java.util.Map;
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class ExcelListener extends AnalysisEventListener {
+public class ExcelListener<T extends BaseRowModel> extends AnalysisEventListener<T> {
 
     //自定义用于暂时存储data
-    private List<Object> dataInfo = new ArrayList<>();
-    //导入表头
-    private StringBuilder importHeads = new StringBuilder();
-    //模版表头
-    private StringBuilder modelHeads = new StringBuilder();
+    private List<T> dataInfo = new ArrayList<>();
 
     /**
      * 通过 AnalysisContext 对象还可以获取当前 sheet，当前行等数据
      */
     @Override
-    public void invoke(Object o, AnalysisContext analysisContext) {
+    public void invoke(T o, AnalysisContext analysisContext) {
         Integer currentRowNum = analysisContext.getCurrentRowNum();
         //获取导入表头，默认第一行为表头
-        if (currentRowNum == 0) {
-            try {
-                Map<String, Object> m = objToMap(o);
-                for (Object v : m.values()) {
-                    importHeads.append(String.valueOf(v).trim()).append(",");
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        } else {
+        if (currentRowNum != 0) {
             dataInfo.add(o);
         }
     }
@@ -55,11 +42,7 @@ public class ExcelListener extends AnalysisEventListener {
      */
     @Override
     public void doAfterAllAnalysed(AnalysisContext analysisContext) {
-        //获取模版表头
-        ExcelHeadProperty ehp = analysisContext.getExcelHeadProperty();
-        for (List<String> s : ehp.getHead()) {
-            modelHeads.append(s.get(0)).append(",");
-        }
+
     }
 
     //Object转换为Map
