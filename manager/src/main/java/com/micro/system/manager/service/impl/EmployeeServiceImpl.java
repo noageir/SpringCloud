@@ -3,7 +3,7 @@ package com.micro.system.manager.service.impl;
 import com.micro.system.manager.batch.EmployeeBatchService;
 import com.micro.system.manager.config.db.ReadOnlyConnection;
 import com.micro.system.manager.config.db.WriteOnlyConnection;
-import com.micro.system.manager.constant.ManageConstant;
+import com.micro.system.manager.constant.ManagerConstant;
 import com.micro.system.manager.mapper.EmployeeMapper;
 import com.micro.system.manager.model.entity.AddUser;
 import com.micro.system.manager.model.form.user.AddUserForm;
@@ -95,7 +95,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         try {
             employeeBatchService.addUserInfoBath(userLists);
         } catch (Exception e) {
-            throw new CommonException(ManageConstant.RESULT_NULL);
+            throw new CommonException(ManagerConstant.RESULT_NULL);
         }
     }
 }

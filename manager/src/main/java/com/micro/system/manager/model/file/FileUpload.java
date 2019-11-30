@@ -14,8 +14,8 @@ import java.io.Serializable;
  * Project: com.spring.cloud
  * Package: com.micro.system.manager.model.entity
  */
-@EqualsAndHashCode(callSuper = true)
 @Data
+@EqualsAndHashCode(callSuper = true)
 public class FileUpload extends BaseRowModel implements Serializable {
     @ExcelProperty(index = 0, value = "姓名")
     @ApiModelProperty(value = "姓名")

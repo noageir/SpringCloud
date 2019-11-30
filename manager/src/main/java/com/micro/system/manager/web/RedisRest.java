@@ -12,7 +12,7 @@ import static java.util.concurrent.TimeUnit.SECONDS;
 
 @RestController
 @RequestMapping("/redis")
-@Api(tags = "Redis工具接口")
+@Api(tags = "03-Redis工具接口")
 public class RedisRest {
     private static final String REDIS_FLAG = "Test_Redis";
 

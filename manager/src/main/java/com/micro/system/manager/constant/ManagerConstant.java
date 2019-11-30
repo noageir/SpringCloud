@@ -10,11 +10,11 @@ import java.io.Serializable;
  * Project: com.spring.cloud
  * Package: com.micro.system.manager.constant
  */
-public class ManageConstant implements Serializable {
+public class ManagerConstant implements Serializable {
     /**
      * 错误码
      */
     public static final ResponseCode RESULT_NULL = new ResponseCode("Mr1000001", "批量新增用户失败");
 
-
+    public static final ResponseCode FILE_NULL = new ResponseCode("Mr1000002", "上传文件内容为空");
 }
