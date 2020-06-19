@@ -26,25 +26,31 @@ public class LoggerPoint {
         //获取当前登录账户ID
         String userId = ToolsUtils.getUserIdFromReq(request);
         String transactionId = request.getHeader(MdcUtil.MDC_TRANSACTION_ID);
+        String method = request.getMethod();
+        String url = request.getRequestURL().toString();
+
         if (StringUtils.isBlank(transactionId)) {
             transactionId = MdcUtil.generateTransactionId();
         }
+
         String roleList = request.getHeader(MdcUtil.MDC_ROLE_LIST);
         if (StringUtils.isBlank(roleList)) {
             roleList = "";
         }
+
         MdcUtil.setUserId(userId);
         MdcUtil.setTransactionId(transactionId);
         MdcUtil.setRoleList(roleList);
 
-        logger.info("--01--Request---------------------");
+        logger.info("----Request---------------------");
         logger.info("0-TransactionId:{}", transactionId);
-        logger.info("1-Http Method:{}", request.getMethod());
+        logger.info("1-Http Method:{}", method);
         logger.info("2-Client Ip:{}", getIpAddress(request));
-        logger.info("3-Request:{}", request.getRequestURL().toString());
-        logger.info("4-Class:{}", joinPoint.getSignature().getDeclaringTypeName());
-        logger.info("5-RestFul:{}", joinPoint.getSignature().getName());
+        logger.info("3-Class:{}", joinPoint.getSignature().getDeclaringTypeName());
+        logger.info("4-Request Url:{}", url);
+        logger.info("5-RestFul Interface:{}", joinPoint.getSignature().getName());
         logger.info("6-Parameter:{}", Arrays.toString(joinPoint.getArgs()));
+        logger.info("----Request---------------------");
     }
 
     public static void loggerResponse(Object ret, Class object) {
@@ -52,10 +58,9 @@ public class LoggerPoint {
         Gson gson = new Gson();
         String result = gson.toJson(ret);
         logger.info("Return Value:{}", result);
-        logger.info("--02--Response---------------------");
     }
 
-    public static String getIpAddress(HttpServletRequest request) {
+    private static String getIpAddress(HttpServletRequest request) {
         String ip = request.getHeader("x-forwarded-for");
         if (ip == null || ip.length() == 0 || UN_KNOWN.equalsIgnoreCase(ip)) {
             ip = request.getHeader("Proxy-Client-IP");

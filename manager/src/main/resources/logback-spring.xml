@@ -29,6 +29,8 @@
         <file>${LOG_DIR_PATH}/info.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <fileNamePattern>${LOG_DIR_PATH}/info.log.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>30</maxHistory>
+            <totalSizeCap>10GB</totalSizeCap>
         </rollingPolicy>
         <encoder>
             <pattern>${CONSOLE_LOG_PATTERN}</pattern>
@@ -48,6 +50,8 @@
         <file>${LOG_DIR_PATH}/error.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <fileNamePattern>${LOG_DIR_PATH}/error.log.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>30</maxHistory>
+            <totalSizeCap>10GB</totalSizeCap>
         </rollingPolicy>
         <encoder>
             <pattern>${CONSOLE_LOG_PATTERN}</pattern>
@@ -67,6 +71,8 @@
         <file>${LOG_DIR_PATH}/sql.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <fileNamePattern>${LOG_DIR_PATH}/sql.log.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>30</maxHistory>
+            <totalSizeCap>10GB</totalSizeCap>
         </rollingPolicy>
         <encoder>
             <pattern>${CONSOLE_LOG_PATTERN}</pattern>
@@ -98,26 +104,30 @@
         <appender-ref ref="sql"/>
     </appender>
 
+    <!--配置日志级别-->
+    <property name="ROOT_LOG_LEVEL" value="INFO"/>
+    <property name="SYS_LOG_LEVEL" value="INFO"/>
+    <property name="SQL_LOG_LEVEL" value="INFO"/>
 
-    <logger name="com.micro.system.manager.mapper" level="INFO" additivity="false">
+    <logger name="com.micro.system.manager.mapper" level="${SQL_LOG_LEVEL}" additivity="false">
         <appender-ref ref="console"/>
         <appender-ref ref="ASYNC_SQL"/>
     </logger>
 
-    <logger name="com.micro.system" level="INFO" additivity="false">
+    <logger name="com.micro.system" level="${SYS_LOG_LEVEL}" additivity="false">
         <appender-ref ref="console"/>
         <appender-ref ref="ASYNC_INFO"/>
         <appender-ref ref="ASYNC_ERROR"/>
     </logger>
 
     <!-- org.springframework.web包下的日志输出级别和输出方式配置 -->
-    <logger name="org.springframework.web" level="INFO" additivity="false">
+    <logger name="org.springframework.web" level="${SYS_LOG_LEVEL}" additivity="false">
         <appender-ref ref="console"/>
         <appender-ref ref="ASYNC_INFO"/>
         <appender-ref ref="ASYNC_ERROR"/>
     </logger>
 
-    <root level="INFO">
+    <root level="${ROOT_LOG_LEVEL}">
         <appender-ref ref="console"/>
         <appender-ref ref="ASYNC_INFO"/>
         <appender-ref ref="ASYNC_ERROR"/>

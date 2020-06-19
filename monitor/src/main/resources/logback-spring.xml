@@ -14,7 +14,7 @@
     <property name="LOG_DIR_PATH" value="${all.log.home:-/logs}/${springAppName}/"/>​
 
     <property name="CONSOLE_LOG_PATTERN"
-              value="%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint}[%clr(${LOG_LEVEL_PATTERN:-%6p}){red}] %clr(%-40.40logger{39}){cyan} %clr(%L:){faint} %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}}"/>
+              value="%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint}[%clr(${LOG_LEVEL_PATTERN:-%6p}){red}] %clr(%-40.40logger){cyan}:%clr(%L){green} %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}}"/>
 
     <!-- 输出控制台-->
     <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
@@ -29,6 +29,8 @@
         <file>${LOG_DIR_PATH}/info.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <fileNamePattern>${LOG_DIR_PATH}/info.log.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>30</maxHistory>
+            <totalSizeCap>10GB</totalSizeCap>
         </rollingPolicy>
         <encoder>
             <pattern>${CONSOLE_LOG_PATTERN}</pattern>
@@ -48,6 +50,8 @@
         <file>${LOG_DIR_PATH}/error.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <fileNamePattern>${LOG_DIR_PATH}/error.log.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>30</maxHistory>
+            <totalSizeCap>10GB</totalSizeCap>
         </rollingPolicy>
         <encoder>
             <pattern>${CONSOLE_LOG_PATTERN}</pattern>
@@ -62,22 +66,56 @@
         </filter>
     </appender>
 
-    <logger name="com.micro.system" level="INFO" additivity="false">
-        <appender-ref ref="console"/>
+    <!-- 输出Sql文件 -->​
+    <appender name="sql" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_DIR_PATH}/sql.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_DIR_PATH}/sql.log.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>30</maxHistory>
+            <totalSizeCap>10GB</totalSizeCap>
+        </rollingPolicy>
+        <encoder>
+            <pattern>${CONSOLE_LOG_PATTERN}</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <appender name="ASYNC_INFO" class="ch.qos.logback.classic.AsyncAppender">
+        <!-- 设置为不丢失日志,默认如果队列的80%已满,则会丢弃TRACT、DEBUG、INFO级别的日志 -->
+        <discardingThreshold>0</discardingThreshold>
+        <!-- 更改默认的队列的深度,默认值为256 -->
+        <queueSize>512</queueSize>
         <appender-ref ref="info"/>
+    </appender>
+
+    <appender name="ASYNC_ERROR" class="ch.qos.logback.classic.AsyncAppender">
+        <!-- 设置为不丢失日志,默认如果队列的80%已满,则会丢弃TRACT、DEBUG、INFO级别的日志 -->
+        <discardingThreshold>0</discardingThreshold>
+        <!-- 更改默认的队列的深度,默认值为256 -->
+        <queueSize>512</queueSize>
         <appender-ref ref="error"/>
+    </appender>
+
+    <!--配置日志级别-->
+    <property name="ROOT_LOG_LEVEL" value="INFO"/>
+    <property name="SYS_LOG_LEVEL" value="INFO"/>
+
+    <logger name="com.micro.system" level="${SYS_LOG_LEVEL}" additivity="false">
+        <appender-ref ref="console"/>
+        <!--        <appender-ref ref="ASYNC_INFO"/>-->
+        <!--        <appender-ref ref="ASYNC_ERROR"/>-->
     </logger>
 
     <!-- org.springframework.web包下的日志输出级别和输出方式配置 -->
-    <logger name="org.springframework.web" level="INFO" additivity="false">
+    <logger name="org.springframework.web" level="${SYS_LOG_LEVEL}" additivity="false">
         <appender-ref ref="console"/>
-        <!--<appender-ref ref="info"/>-->
-        <!--<appender-ref ref="error"/>-->
+        <!--        <appender-ref ref="ASYNC_INFO"/>-->
+        <!--        <appender-ref ref="ASYNC_ERROR"/>-->
     </logger>
 
-    <root level="INFO">
+    <root level="${ROOT_LOG_LEVEL}">
         <appender-ref ref="console"/>
-        <!--<appender-ref ref="info"/>-->
-        <!--<appender-ref ref="error"/>-->
+        <!--        <appender-ref ref="ASYNC_INFO"/>-->
+        <!--        <appender-ref ref="ASYNC_ERROR"/>-->
     </root>
 </configuration>

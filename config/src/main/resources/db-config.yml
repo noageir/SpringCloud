@@ -12,12 +12,14 @@
 db:
   write:
     driverClassName: org.mariadb.jdbc.Driver
-    url: jdbc:mariadb://noageir.club:3306/data
+    #阿里云
+    url: jdbc:mariadb://120.26.146.156:3306/data
     username: root
     password: 111111qaz
   read:
     driverClassName: org.mariadb.jdbc.Driver
-    url: jdbc:mariadb://noageir.club:3306/data
+    #阿里云
+    url: jdbc:mariadb://120.26.146.156:3306/data
     username: root
     password: 111111qaz
 

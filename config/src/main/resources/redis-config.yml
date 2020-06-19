@@ -1,7 +1,7 @@
 spring:
   redis:
     database: 0
-    host: noageir.club
+    host: 120.26.146.156
     port: 6379
     password: 111111qaz
     timeout: 10000

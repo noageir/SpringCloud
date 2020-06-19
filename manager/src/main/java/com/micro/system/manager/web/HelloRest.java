@@ -1,11 +1,8 @@
 package com.micro.system.manager.web;
 
 import io.swagger.annotations.Api;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import lombok.extern.log4j.Log4j2;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author Noageir
@@ -15,12 +12,17 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/hello")
-@Api(tags = "04-测试类")
+@Log4j2
+@Api(tags = "00-测试类")
 public class HelloRest {
-    private static final Logger logger = LoggerFactory.getLogger(HelloRest.class);
 
-    @GetMapping("/hello")
-    public String test() {
+    @PostMapping("/hello")
+    public String testPost() {
         return "Hello, I'm Test";
+    }
+
+    @GetMapping("/hello/{message}")
+    public String testGet(@PathVariable("message") String message) {
+        return "Hello, I'm Test..." + message;
     }
 }
