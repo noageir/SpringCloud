@@ -26,9 +26,11 @@
         <module>02_config</module>
         <module>03_monitor</module>
         <module>04_manager</module>
+        <module>05-signalling</module>
         <module>99_instrument</module>
         <module>100_gateway</module>
         <module>101_zuul</module>
+
     </modules>
 
     <build>
@@ -41,11 +43,11 @@
         </resources>
         <!--重要 如果不设置resource 会导致application.yaml中的@@找不到pom文件中的配置-->
 
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-        </plugins>
+<!--        <plugins>-->
+<!--            <plugin>-->
+<!--                <groupId>org.springframework.boot</groupId>-->
+<!--                <artifactId>spring-boot-maven-plugin</artifactId>-->
+<!--            </plugin>-->
+<!--        </plugins>-->
     </build>
 </project>

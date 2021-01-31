@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
     <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
-
+    ​
     <!-- 彩色日志依赖的渲染类 -->
     <conversionRule conversionWord="clr" converterClass="org.springframework.boot.logging.logback.ColorConverter"/>
     <conversionRule conversionWord="wex"
@@ -11,7 +11,7 @@
 
     <springProperty scope="context" name="springAppName" source="spring.application.name"/>
     <!-- Example for logging into the build folder of your project -->
-    <property name="LOG_DIR_PATH" value="../logs/${springAppName}"/>
+    <property name="LOG_DIR_PATH" value="../logs/${springAppName}"/>​
 
     <property name="CONSOLE_LOG_PATTERN"
               value="%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint}[%clr(%X{userId}){yellow}|%clr(${LOG_LEVEL_PATTERN:-%6p}){red}] %clr(%-40.40logger{39}){cyan} %clr(%L:){faint} %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}}"/>
@@ -24,7 +24,7 @@
         </encoder>
     </appender>
 
-    <!-- 输出Info文件 -->
+    <!-- 输出Info文件 -->​
     <appender name="info" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>${LOG_DIR_PATH}/info.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
@@ -45,7 +45,7 @@
         </filter>
     </appender>
 
-    <!-- 输出Error文件 -->
+    <!-- 输出Error文件 -->​
     <appender name="error" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>${LOG_DIR_PATH}/error.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
@@ -66,7 +66,7 @@
         </filter>
     </appender>
 
-    <!-- 输出Sql文件 -->
+    <!-- 输出Sql文件 -->​
     <appender name="sql" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>${LOG_DIR_PATH}/sql.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
