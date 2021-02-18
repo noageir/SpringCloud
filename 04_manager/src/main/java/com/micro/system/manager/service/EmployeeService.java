@@ -41,8 +41,6 @@ public interface EmployeeService {
     /**
      * 批量新增用户信息
      *
-     * @param addUserForm 用户参数
-     * @return Boolean
      */
     @Async
     void modifyUserInfoBatch();

@@ -30,9 +30,11 @@ import java.util.List;
 @Log4j2
 public class EmployeeServiceImpl implements EmployeeService {
 
-    private final EmployeeMapper employeeMapper;
+    final
+    EmployeeMapper employeeMapper;
 
-    private final EmployeeBatchService employeeBatchService;
+    final
+    EmployeeBatchService employeeBatchService;
 
     public EmployeeServiceImpl(EmployeeMapper employeeMapper, EmployeeBatchService employeeBatchService) {
         this.employeeMapper = employeeMapper;

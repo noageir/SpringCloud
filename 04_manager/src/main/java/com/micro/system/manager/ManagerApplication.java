@@ -1,7 +1,6 @@
 package com.micro.system.manager;
 
 import lombok.extern.log4j.Log4j2;
-import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.cloud.client.SpringCloudApplication;
 import org.springframework.cloud.openfeign.EnableFeignClients;
@@ -15,7 +14,6 @@ import org.springframework.scheduling.annotation.EnableAsync;
  */
 @SpringCloudApplication
 @EnableFeignClients
-@MapperScan(value = "com.micro.system.manager.mapper")
 @EnableAsync
 @Log4j2
 public class ManagerApplication {
