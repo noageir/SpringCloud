@@ -32,7 +32,7 @@ public interface EmployeeMapper {
     /**
      * 删除用户信息
      *
-     * @param userInfoForm 入参
+     * @param  addUser 入参
      * @return True or False
      */
     Boolean removeUserInfo(AddUser addUser);
